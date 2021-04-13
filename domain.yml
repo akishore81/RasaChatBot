@@ -65,9 +65,9 @@ responses:
   - text: Location not found. Please try again!
   - text: Location not serviced. Please specify another location.
   utter_ask_email:
-  - Please provide email to which the results can be sent.
-  - To which email shall I send the restaurant details?
-  - What's your email address? We will send across the details to your email.
+  - text: Please provide email to which the results can be sent.
+  - text: To which email shall I send the restaurant details?
+  - text: What's your email address? We will send across the details to your email.
   utter_default:
   - text: i cannot understand
 actions:
