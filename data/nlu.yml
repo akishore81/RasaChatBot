@@ -1,5 +1,9 @@
 version: "2.0"
 nlu:
+- intent: out_of_scope
+  examples: |
+    - What is 2 + 2?
+    - Who's the US President?
 - intent: greet
   examples: |
     - hi
@@ -26,6 +30,8 @@ nlu:
     - find me a [italian](cuisine) restaurant
     - find me a restaurant in [mumbai]{"entity": "location", "value": "Mumbai"} with price [<300]{"entity": "price", "value": "Low"}
     - I am hungry!!
+    - I am hungry
+    - find restaurant
     - [Mexican](cuisine)
     - I wish to have [mexican](cuisine) food today
     - [mumbrasaawa](location)
@@ -63,9 +69,13 @@ nlu:
     - [American](cuisine)
     - Im hungry. Looking out for some good [chinese](cuisine) restaurants in [chandigarh](location)
     - hi. I am looking for restaurants in [delhi]{"entity": "location", "value": "New Delhi"}
-    - [South Indian](cuisine)
     - find [italian](cuisine) restaurants in [kolkata]{"entity": "location", "value": "Kolkata"} for price [>Rs.700]{"entity": "price", "value": "High"}
     - locate some good [mexican](cuisine) restaurants in [mumbai]{"entity": "location", "value": "Mumbai"} for price range [more than rs.700]{"entity": "price", "value": "High"} and send details to email [akidhose@yahoo.co.in](email)
+    - [Karachi](location)
+    - [lucknow](location)
+    - [Chinese]{"entity": "cuisine", "value": "chinese"}
+    - I am looking to eat some [mexican](cuisine) food today
+    - [noida](location)
 - intent: send_email
   examples: |
     - [xyz@yahoo.com](email)
@@ -111,6 +121,9 @@ nlu:
 - intent: affirm
   examples: |
     - yes please
+- intent: nlu_fallback
+  examples: |
+    - sfsgsdd
 - synonym: New Delhi
   examples: |
     - Delhi
@@ -145,6 +158,8 @@ nlu:
     - > 700
     - more than 700
     - higher than 700
+    - >Rs.700
+    - more than rs.700
 - synonym: Kolkata
   examples: |
     - kolkata

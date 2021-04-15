@@ -339,3 +339,49 @@ stories:
   - action: utter_email_sent
   - action: utter_goodbye
   - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Karachi
+  - slot_was_set:
+    - location: Karachi
+  - action: action_validate_location
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - location_found: tier3
+  - action: utter_location_not_found
+  - intent: restaurant_search
+    entities:
+    - location: lucknow
+  - slot_was_set:
+    - location: lucknow
+  - action: action_validate_location
+  - slot_was_set:
+    - location: lucknow
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - restaurants_found: 'False'
+  - action: utter_restaurant_not_found
+  - action: utter_goodbye
+  - action: action_restart

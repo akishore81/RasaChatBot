@@ -3,10 +3,11 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- greet
+- nlu_fallback
+- restaurant_search
 - affirm
 - send_email
-- restaurant_search
-- greet
 - deny
 - help
 - goodbye
@@ -89,6 +90,10 @@ responses:
   - text: We are sending your search results to your email. Check your inbox.
   - text: Sent
   - text: Sent. Bon Appetit!
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  utter_please_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
   utter_default:
   - text: I cannot understand
 actions:
