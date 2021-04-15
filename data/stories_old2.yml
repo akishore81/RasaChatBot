@@ -1,0 +1,350 @@
+
+version: "2.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_validate_location
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc@yahoo.com
+  - slot_was_set:
+    - email: abc@yahoo.com
+  - action: action_send_email
+  - action: utter_goodbye
+  - intent: restaurant_search
+    entities:
+    - cuisine: italian
+  - slot_was_set:
+    - cuisine: italian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - action: utter_ask_email
+  - intent: deny
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: Mumbai
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - slot_was_set:
+    - location: Mumbai
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Mumbai
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: South Indian
+  - slot_was_set:
+    - cuisine: South Indian
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc@yahpp.com
+  - slot_was_set:
+    - email: abc@yahpp.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_2
+  steps:
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: help
+    entities:
+    - location: kolkatta
+  - slot_was_set:
+    - location: kolkatta
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: Mexican
+  - slot_was_set:
+    - cuisine: Mexican
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc@yahpp.com
+  - slot_was_set:
+    - email: abc@yahpp.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_3
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: mexican
+  - slot_was_set:
+    - cuisine: mexican
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: mumbrasaawa
+  - slot_was_set:
+    - location: mumbrasaawa
+  - action: action_validate_location
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - location_found: tier3
+  - action: utter_location_not_found
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - cuisine: American
+    - email: xyz@outlook.com
+  - slot_was_set:
+    - cuisine: American
+  - slot_was_set:
+    - email: xyz@outlook.com
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - action: action_search_restaurants
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: High
+  - slot_was_set:
+    - price: High
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Bangalore
+  - action: utter_ask_email
+  - intent: deny
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - cuisine: mexican
+    - price: High
+  - slot_was_set:
+    - price: High
+  - slot_was_set:
+    - cuisine: mexican
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Kolkata
+  - slot_was_set:
+    - location: Kolkata
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Kolkata
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Kolkata
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc.kkjar_hir123@hotmail.com
+  - slot_was_set:
+    - email: abc.kkjar_hir123@hotmail.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_5
+  steps:
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Kochi
+  - slot_was_set:
+    - location: Kochi
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: North Indian
+  - slot_was_set:
+    - cuisine: North Indian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Kochi
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc@yahpp.com
+  - slot_was_set:
+    - email: abc@yahpp.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_6
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: hoganivalwjae
+  - slot_was_set:
+    - location: hoganivalwjae
+  - action: action_validate_location
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - location_found: tier3
+  - action: utter_location_not_found
+  - intent: restaurant_search
+    entities:
+    - location: Mumbai
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: Mexican
+  - slot_was_set:
+    - cuisine: Mexican
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: High
+  - slot_was_set:
+    - price: High
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: abc@yahpp.com
+  - slot_was_set:
+    - email: abc@yahpp.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Bangalore
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: ahbcdj@dkj.com
+  - slot_was_set:
+    - email: ahbcdj@dkj.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart

@@ -7,7 +7,7 @@ from rasa_sdk.events import SlotSet
 import pandas as pd
 import json
 
-ZomatoData = pd.read_csv('zomato.csv')
+ZomatoData = pd.read_csv('zomato.csv',encoding = "ISO-8859-1")
 ZomatoData = ZomatoData.drop_duplicates().reset_index(drop=True)
 WeOperate = ['New Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Allahabad', 'Bhubaneshwar', 'Mangalore', 
              'Mumbai', 'Ranchi', 'Patna', 'Mysore', 'Aurangabad', 'Amritsar', 'Puducherry', 'Varanasi', 
@@ -33,17 +33,24 @@ def RestaurantSearch(loc,cuisine,price):
 	
 	cuisine_data = location_data[(location_data['Cuisines'].apply(lambda x: cuisine.lower() in x.lower()))]
 	
-	if price == "than 300":
+	if price == "Low":
 		price_data = cuisine_data[(cuisine_data['Average Cost for two'].apply(lambda x: x < 300 ))]
-	elif price == "700":
+	elif price == "Medium":
 		price_data = cuisine_data[(cuisine_data['Average Cost for two'].apply(lambda x: 300 <= x <= 700 ))]
 	else:
 		price_data = cuisine_data[(cuisine_data['Average Cost for two'].apply(lambda x: x > 700 ))]
 		
-	TEMP = price_data.sort_values("Aggregate rating", ascending=False)
+	if len(price_data) == 0:
+		TEMP = ""
+	else:
+		TEMP = price_data.sort_values(by='Aggregate rating', ascending=False)
+		TEMP = TEMP[['Restaurant Name','Address','Average Cost for two','Aggregate rating']]
 	
-	return TEMP[['Restaurant Name','Address','Average Cost for two','Aggregate rating']]
-	
+	return TEMP
+
+def sendmail(MailID,response):
+		sent=1
+		
 
 class ActionSearchRestaurants(Action):
 	def name(self):
@@ -53,28 +60,30 @@ class ActionSearchRestaurants(Action):
 		#config={ "user_key":"f4924dc9ad672ee8c4f8c84743301af5"}
 		loc = tracker.get_slot('location')
 		cuisine = tracker.get_slot('cuisine')
-		
-		price = tracker.get_slot('price')	
-		
-		dispatcher.utter_message(text="-------"+price)
+		price = tracker.get_slot('price')		
 		
 		results = RestaurantSearch(loc,cuisine, price)
 		
-		top5 = results.head(5)
-		
 		response=""
-		if results.shape[0] == 0:
+		
+		#if results.shape[0] == 0:
+		if len(results) == 0:
 			response= "no results"
 		else:
-			response = 'Your top five results:' + "\n"
-			#for restaurant in RestaurantSearch(loc,cuisine,price).iloc[:5].iterrows():
-			for index, restaurant in top5.iterrows():
+			top10 = results.head(10)
+			response = 'Your top ten results:' + "\n"
+			#for index, restaurant in RestaurantSearch(loc,cuisine,price).iloc[:10].iterrows():
+			for index, restaurant in top10.iterrows():
 				#restaurant = restaurant[1]
 				#response=response + F"Found {restaurant['Restaurant Name']} in {restaurant['Address']} rated {restaurant['Rating text']} with avg cost {restaurant['Average Cost for two']} \n\n"
-				response = response + str(restaurant['Restaurant Name']) + ' in ' + restaurant['Address'] + ' has been rated ' + str(restaurant['Aggregate rating']) + ' with avg cost Rs.' + str(restaurant['Average Cost for two']) + "\n"
+				response = response + str(restaurant['Restaurant Name']) + ' in ' + restaurant['Address'] + ' has been rated ' + str(restaurant['Aggregate rating']) + ' with avg cost Rs.' + str(restaurant['Average Cost for two']) + "\n\n"
 				
 		dispatcher.utter_message(str(response))
-		return [SlotSet('location',loc)]
+		
+		if len(results) == 0:
+			return [SlotSet("restaurants_found","False")]
+		else:
+			return [SlotSet('location',loc),SlotSet("restaurants_found","True")]
 
 class Validate_location(Action):
 	def name(self):
@@ -87,11 +96,20 @@ class Validate_location(Action):
 		
 		return [SlotSet('location',check['location_new']), SlotSet('location_found',check['location_f'])]
 
+class ActionValidateEmail(Action):
+	def name(self):
+		return 'action_validate_email'
+	
+	def run(self, dispatcher, tracker, domain):
+		MailID = tracker.get_slot('email')
+		
+		pattern = "[\w.%+-]+@[a-zA-Z]+[.]?[a-zA-Z]*{,2}[.a-zA-Z]{,3}"
+
 class ActionSendMail(Action):
 	def name(self):
 		return 'action_send_mail'
 
 	def run(self, dispatcher, tracker, domain):
-		MailID = tracker.get_slot('mail_id')
+		MailID = tracker.get_slot('email')
 		sendmail(MailID,response)
-		return [SlotSet('mail_id',MailID)]
+		return [SlotSet('email',MailID)]

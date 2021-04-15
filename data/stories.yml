@@ -1,0 +1,341 @@
+version: "2.0"
+stories:
+
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: mexican
+  - slot_was_set:
+    - cuisine: mexican
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - slot_was_set:
+    - restaurants_found: 'False'
+  - action: utter_restaurant_not_found
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: ' Medium'
+  - slot_was_set:
+    - price: ' Medium'
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: send_email
+    entities:
+    - email: ahbcdj@dkj.com
+  - slot_was_set:
+    - email: ahbcdj@dkj.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: Rishikesh
+  - slot_was_set:
+    - location: Rishikesh
+  - action: action_validate_location
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - location_found: tier3
+  - action: utter_location_not_found
+  - intent: restaurant_search
+    entities:
+    - location: Allahabad
+  - slot_was_set:
+    - location: Allahabad
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Allahabad
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: High
+  - slot_was_set:
+    - price: High
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Allahabad
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: send_email
+    entities:
+    - email: xyz@sth.edu
+  - slot_was_set:
+    - email: xyz@sth.edu
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: Kolkata
+  - slot_was_set:
+    - location: Kolkata
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Kolkata
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: Mexican
+  - slot_was_set:
+    - cuisine: Mexican
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - restaurants_found: 'False'
+  - action: utter_restaurant_not_found
+  - action: action_restart
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: mubaim
+  - slot_was_set:
+    - location: mubaim
+  - action: action_validate_location
+  - slot_was_set:
+    - location: null
+  - slot_was_set:
+    - location_found: tier3
+  - action: utter_location_not_found
+  - intent: restaurant_search
+    entities:
+    - location: Mumbai
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: American
+  - slot_was_set:
+    - cuisine: American
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - restaurants_found: 'False'
+  - action: utter_restaurant_not_found
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+    - location: chandigarh
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: chandigarh
+  - action: action_validate_location
+  - slot_was_set:
+    - location: chandigarh
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: chandigarh
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: deny
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: South Indian
+  - slot_was_set:
+    - cuisine: South Indian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Medium
+  - slot_was_set:
+    - price: Medium
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: send_email
+    entities:
+    - email: abxm_bse@yahoo.co.in
+  - slot_was_set:
+    - email: abxm_bse@yahoo.co.in
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_2
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: italian
+    - location: Kolkata
+    - price: High
+  - slot_was_set:
+    - price: High
+  - slot_was_set:
+    - cuisine: italian
+  - slot_was_set:
+    - location: Kolkata
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Kolkata
+  - slot_was_set:
+    - location_found: found
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Kolkata
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: handf.kisre@hotmail.com
+  - slot_was_set:
+    - email: handf.kisre@hotmail.com
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart
+
+- story: interactive_story_3
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: mexican
+    - location: Mumbai
+    - price: High
+    - email: akidhose@yahoo.co.in
+  - slot_was_set:
+    - price: High
+  - slot_was_set:
+    - cuisine: mexican
+  - slot_was_set:
+    - location: Mumbai
+  - slot_was_set:
+    - email: akidhose@yahoo.co.in
+  - action: action_validate_location
+  - slot_was_set:
+    - location: Mumbai
+  - slot_was_set:
+    - location_found: found
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Mumbai
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart

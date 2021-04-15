@@ -1,0 +1,198 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hola
+    - good morning
+    - good evening
+    - hello!
+    - hey
+    - Hola
+    - Hi
+    - Hey
+    - Hello!
+- intent: restaurant_search
+  examples: |
+    - can you please help find me restaurants
+    - New [Delhi]{"entity": "location", "value": "New Delhi"}
+    - [Chinese]{"entity": "cuisine", "value": "chinese"}
+    - [lesser than 300]{"entity": "price", "value": "Low"}
+    - please help me find a restaurant in [delhi]{"entity": "location", "value": "New Delhi"}
+    - [South Indian](cuisine)
+    - [between 300 to 700]{"entity": "price", "value": "Medium"}
+    - find me a restaurant
+    - find me a [italian](cuisine) restaurant
+    - find me a restaurant in [mumbai]{"entity": "location", "value": "Mumbai"} with price [<300]{"entity": "price", "value": "Low"}
+    - I am hungry!!
+    - [Mexican](cuisine)
+    - I wish to have [mexican](cuisine) food today
+    - [mumbrasaawa](location)
+    - email me list of [American](cuisine) restaurants at [xyz@outlook.com](email)
+    - [Bangalore](location)
+    - are you aware of any [mexican](cuisine) restaurants with price [more than Rupees 700]{"entity": "price", "value": "High"}?
+    - [kolkata]{"entity": "location", "value": "Kolkata"}
+    - I want to eat something
+    - [Cochin]{"entity": "location", "value": "Kochi"}
+    - [North Indian](cuisine)
+    - [hoganivalwjae](location)
+    - [bombay]{"entity": "location", "value": "Mumbai"}
+    - Im hungry. Looking out for some good restaurants
+    - [bengaluru]{"entity": "location", "value": "Bangalore"}
+    - I'will prefer [Italian](cuisine)
+    - I'll prefer [mexican](cuisine)
+    - [300-700 range]{"entity": "price", "value": "Medium"}
+    - [300-700]{"entity": "price", "value": "Medium"}
+    - [between 300 and 700]{"entity": "price", "value": " Medium"}
+    - [Italian](cuisine)
+    - Can you suggest some good restaurants in [Rishikesh](location)
+    - Okay. Show me some in [Allahabad](location)
+    - Ill prefer [chines]{"entity": "cuisine", "value": "chinese"}
+    - [>700]{"entity": "price", "value": "High"}
+    - [> 700]{"entity": "price", "value": "High"}
+    - [more than 700]{"entity": "price", "value": "High"}
+    - [higher than 700]{"entity": "price", "value": "High"}
+    - Can you suggest some good restaurants in [kolkata]{"entity": "location", "value": "Kolkata"}
+    - [<300]{"entity": "price", "value": "Low"}
+    - [< 300]{"entity": "price", "value": "Low"}
+    - [less than 300]{"entity": "price", "value": "Low"}
+    - [below 300]{"entity": "price", "value": "Low"}
+    - in [mubaim](location)
+    - in [Mumbai](location)
+    - [American](cuisine)
+    - Im hungry. Looking out for some good [chinese](cuisine) restaurants in [chandigarh](location)
+    - hi. I am looking for restaurants in [delhi]{"entity": "location", "value": "New Delhi"}
+    - [South Indian](cuisine)
+    - find [italian](cuisine) restaurants in [kolkata]{"entity": "location", "value": "Kolkata"} for price [>Rs.700]{"entity": "price", "value": "High"}
+    - locate some good [mexican](cuisine) restaurants in [mumbai]{"entity": "location", "value": "Mumbai"} for price range [more than rs.700]{"entity": "price", "value": "High"} and send details to email [akidhose@yahoo.co.in](email)
+- intent: send_email
+  examples: |
+    - [xyz@yahoo.com](email)
+    - [abc@yahoo.co.in](email)
+    - [abc@yahoo.com](email)
+    - [abc.kkjar_hir123@hotmail.com](email)
+    - [abc@yahpp.com](email)
+    - Please send it to [ahbcdj@dkj.com](email)
+    - yes. Please send it to [ahbcdj@dkj.com](email)
+    - yes. Please send it to [xyz@sth.edu](email)
+    - [jddk.2jmd@kdl.co.in](email)
+    - yes. please send it to [abxm_bse@yahoo.co.in](email)
+    - [handf.kisre@hotmail.com](email)
+- intent: goodbye
+  examples: |
+    - thanks bye
+    - goodbye
+    - bye
+    - bye bye
+    - chao
+    - farewell
+    - stop
+    - end
+    - good bye
+    - have a good ones
+- intent: deny
+  examples: |
+    - do not send email
+    - email not required
+    - no. thanks
+    - please don't send email
+    - not required
+    - do not spam me
+    - no
+    - No. Not required
+    - nope
+    - dont send
+    - donot send
+    - no thanks
+    - no mail
+    - no email
+    - no email please
+- intent: affirm
+  examples: |
+    - yes please
+- synonym: New Delhi
+  examples: |
+    - Delhi
+    - delhi
+    - delli
+- synonym: chinese
+  examples: |
+    - Chinese
+    - chines
+    - Chines
+- synonym: Low
+  examples: |
+    - lesser than 300
+    - <300
+    - < 300
+    - less than 300
+    - below 300
+- synonym: Medium
+  examples: |
+    - between 300 to 700
+    - 300-700 range
+    - 300-700
+- synonym: Mumbai
+  examples: |
+    - mumbai
+    - bombay
+    - Bombay
+- synonym: High
+  examples: |
+    - more than Rupees 700
+    - >700
+    - > 700
+    - more than 700
+    - higher than 700
+- synonym: Kolkata
+  examples: |
+    - kolkata
+    - Calcutta
+    - calcutta
+- synonym: Kochi
+  examples: |
+    - Cochin
+    - kochi
+    - cochin
+- synonym: Bangalore
+  examples: |
+    - bengaluru
+    - Bengaluru
+    - bangalore
+    - bglr
+- synonym: ' Medium'
+  examples: |
+    - between 300 and 700
+- synonym: Baroda
+  examples: |
+    - Vadodara
+    - vadodara
+    - baroda
+- synonym: Chennai
+  examples: |
+    - chennai
+    - Madras
+    - madras
+- synonym: Gurgaon
+  examples: |
+    - gurgaon
+    - Gurugram
+    - gurugram
+- synonym: Mysore
+  examples: |
+    - mysore
+    - Mysuru
+    - mysuru
+- regex: email
+  examples: |
+    - [A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}
+    - examples: |
+- regex: greet
+  examples: |
+    - examples: |
+    - hey[^\s]*
+- regex: pincode
+  examples: |
+    - [0-9]{6}
+    - examples: |

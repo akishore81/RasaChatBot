@@ -1,0 +1,77 @@
+
+version: "2.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_validate_location
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: than 300
+  - slot_was_set:
+    - price: than 300
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: xyz@yahoo.com
+  - slot_was_set:
+    - email: xyz@yahoo.com
+  - action: action_send_email
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_validate_location
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: South Indian
+  - slot_was_set:
+    - cuisine: South Indian
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: '300'
+    - price: '700'
+  - slot_was_set:
+    - price: '700'
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - action: utter_ask_email
+  - intent: send_email
+  - action: action_send_email
+  - action: utter_email_sent
+  - action: utter_goodbye
