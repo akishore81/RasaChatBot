@@ -53,7 +53,7 @@ def RestaurantSearch(loc,cuisine,price):
 
 def sendmail(recipient,response):
 	server_username = 'rasatestingupgrad2021@outlook.com'
-	server_password = 'Testingrasa$135'
+	server_password = ''
 	
 	# Create Email 
 	mail_from = server_username
