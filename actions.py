@@ -52,7 +52,7 @@ def RestaurantSearch(loc,cuisine,price):
 	return TEMP
 
 def sendmail(recipient,response):
-	server_username = 'rasatestingupgrad2021@outlook.com'
+	server_username = 'upgrad2021@outlook.com'
 	server_password = ''
 	
 	# Create Email 
