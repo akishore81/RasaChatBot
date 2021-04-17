@@ -32,6 +32,8 @@ nlu:
     - I am hungry!!
     - I am hungry
     - find restaurant
+    - find me a restaurant please
+    - find a restaurant for me
     - [Mexican](cuisine)
     - I wish to have [mexican](cuisine) food today
     - [mumbrasaawa](location)
@@ -73,22 +75,26 @@ nlu:
     - locate some good [mexican](cuisine) restaurants in [mumbai]{"entity": "location", "value": "Mumbai"} for price range [more than rs.700]{"entity": "price", "value": "High"} and send details to email [akidhose@yahoo.co.in](email)
     - [Karachi](location)
     - [lucknow](location)
-    - [Chinese]{"entity": "cuisine", "value": "chinese"}
     - I am looking to eat some [mexican](cuisine) food today
     - [noida](location)
+    - please find me a restaurant
+    - [delhi]{"entity": "location", "value": "New Delhi"}
+    - [Chinese]{"entity": "cuisine", "value": "chinese"}
 - intent: send_email
   examples: |
     - [xyz@yahoo.com](email)
     - [abc@yahoo.co.in](email)
     - [abc@yahoo.com](email)
     - [abc.kkjar_hir123@hotmail.com](email)
-    - [abc@yahpp.com](email)
     - Please send it to [ahbcdj@dkj.com](email)
     - yes. Please send it to [ahbcdj@dkj.com](email)
     - yes. Please send it to [xyz@sth.edu](email)
     - [jddk.2jmd@kdl.co.in](email)
     - yes. please send it to [abxm_bse@yahoo.co.in](email)
     - [handf.kisre@hotmail.com](email)
+    - [kbc@outlook.com](email)
+    - [kbc@yahoo.com](email)
+    - [kbc@ahoo.com](email)
 - intent: goodbye
   examples: |
     - thanks bye
@@ -121,6 +127,7 @@ nlu:
 - intent: affirm
   examples: |
     - yes please
+    - yes
 - intent: nlu_fallback
   examples: |
     - sfsgsdd
@@ -176,7 +183,7 @@ nlu:
     - Bengaluru
     - bangalore
     - bglr
-- synonym: ' Medium'
+- synonym: 'Medium'
   examples: |
     - between 300 and 700
 - synonym: Baroda
@@ -211,3 +218,4 @@ nlu:
   examples: |
     - [0-9]{6}
     - examples: |
+    - 123456

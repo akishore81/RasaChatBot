@@ -385,3 +385,51 @@ stories:
   - action: utter_restaurant_not_found
   - action: utter_goodbye
   - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_validate_location
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - location_found: found
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_pricerange
+  - intent: restaurant_search
+    entities:
+    - price: Low
+  - slot_was_set:
+    - price: Low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: New Delhi
+  - slot_was_set:
+    - restaurants_found: 'True'
+  - action: utter_ask_send_email
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: send_email
+    entities:
+    - email: kbc@ahoo.com
+  - slot_was_set:
+    - email: kbc@ahoo.com
+  - action: action_send_email
+  - slot_was_set:
+    - email: kbc@ahoo.com
+  - action: utter_email_sent
+  - action: utter_goodbye
+  - action: action_restart

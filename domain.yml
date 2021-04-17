@@ -3,11 +3,11 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- greet
-- nlu_fallback
-- restaurant_search
 - affirm
+- restaurant_search
+- greet
 - send_email
+- nlu_fallback
 - deny
 - help
 - goodbye
@@ -36,6 +36,9 @@ slots:
   email:
     type: text
     influence_conversation: true
+  email_sent:
+    type: text
+    influence_conversation: true  
 responses:
   utter_ask_cuisine:
   - buttons:

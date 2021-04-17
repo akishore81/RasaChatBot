@@ -6,6 +6,7 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 import pandas as pd
 import json
+import smtplib
 
 ZomatoData = pd.read_csv('zomato.csv',encoding = "ISO-8859-1")
 ZomatoData = ZomatoData.drop_duplicates().reset_index(drop=True)
@@ -15,6 +16,8 @@ WeOperate = ['New Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Allahabad', 'Bhubane
 			 'Kochi', 'Indore', 'Ahmedabad', 'Coimbatore', 'Chennai', 'Guwahati', 'Jaipur', 'Hyderabad', 
 			 'Bangalore', 'Nashik', 'Pune', 'Kolkata', 'Bhopal', 'Goa', 'Chandigarh', 'Ghaziabad', 'Ooty', 
 			 'Gangtok', 'Shimla']
+
+results={}
 
 def validate_location(loc,loc_list = WeOperate):
 	loc_list = [i.lower() for i in loc_list]
@@ -48,8 +51,30 @@ def RestaurantSearch(loc,cuisine,price):
 	
 	return TEMP
 
-def sendmail(MailID,response):
-		sent=1
+def sendmail(recipient,response):
+	server_username = 'abhishekkishore@outlook.com.'
+	server_password = '****'
+	
+	# Create Email 
+	mail_from = server_username
+	mail_to = 'abhishekkishore@yahoo.com' #recipient
+	mail_subject = 'Your Restaurant Search Results'
+	mail_message_body = response
+	
+	mail_message = '''\
+	From: %s
+	To: %s
+	Subject: %s
+	
+	\n\n%s
+	''' % (mail_from, mail_to, mail_subject, mail_message_body)
+	
+	server = smtplib.SMTP('smtp.office365.com', 587)
+	server.ehlo()
+	server.starttls()
+	server.login(server_username, server_password)
+	server.sendmail(mail_from, mail_to, mail_message)
+	server.close()
 		
 
 class ActionSearchRestaurants(Action):
@@ -62,6 +87,7 @@ class ActionSearchRestaurants(Action):
 		cuisine = tracker.get_slot('cuisine')
 		price = tracker.get_slot('price')		
 		
+		global results
 		results = RestaurantSearch(loc,cuisine, price)
 		
 		response=""
@@ -71,7 +97,7 @@ class ActionSearchRestaurants(Action):
 			response= "no results"
 		else:
 			top10 = results.head(10)
-			response = 'Your top ten results:' + "\n"
+			response = 'Your top results:' + "\n"
 			#for index, restaurant in RestaurantSearch(loc,cuisine,price).iloc[:10].iterrows():
 			for index, restaurant in top10.iterrows():
 				#restaurant = restaurant[1]
@@ -107,9 +133,18 @@ class ActionValidateEmail(Action):
 
 class ActionSendMail(Action):
 	def name(self):
-		return 'action_send_mail'
+		return 'action_send_email'
 
 	def run(self, dispatcher, tracker, domain):
 		MailID = tracker.get_slot('email')
-		sendmail(MailID,response)
-		return [SlotSet('email',MailID)]
+		
+		top10 = results.head(10)
+		
+		try:
+			sendmail(MailID,top10)
+		except:
+			dispatcher.utter_message("Error Sending Email.")
+			return [SlotSet('email',MailID),SlotSet('email_sent','False')]
+		else:
+			dispatcher.utter_message("Email Sent")
+			return [SlotSet('email',MailID),SlotSet('email_sent','True')]
