@@ -52,12 +52,12 @@ def RestaurantSearch(loc,cuisine,price):
 	return TEMP
 
 def sendmail(recipient,response):
-	server_username = 'abhishekkishore@outlook.com.'
-	server_password = '****'
+	server_username = 'rasatestingupgrad2021@outlook.com'
+	server_password = 'Testingrasa$135'
 	
 	# Create Email 
 	mail_from = server_username
-	mail_to = 'abhishekkishore@yahoo.com' #recipient
+	mail_to = recipient
 	mail_subject = 'Your Restaurant Search Results'
 	mail_message_body = response
 	

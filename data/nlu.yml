@@ -17,6 +17,7 @@ nlu:
     - Hi
     - Hey
     - Hello!
+    - Hello
 - intent: restaurant_search
   examples: |
     - can you please help find me restaurants
@@ -79,7 +80,16 @@ nlu:
     - [noida](location)
     - please find me a restaurant
     - [delhi]{"entity": "location", "value": "New Delhi"}
-    - [Chinese]{"entity": "cuisine", "value": "chinese"}
+    - I'm hungry. Looking out for some good restaurants
+    - I'll prefer [chinese](cuisine)
+    - I'll prefer [chines]{"entity": "cuisine", "value": "chinese"}
+    - Can you suggest some good restaurants in [kolkata]{"entity": "location", "value": "Kolkata"}
+    - [american](cuisine)
+    - [>700]{"entity": "price", "value": "High"}
+    - in [mubaim](location)
+    - in [Mumbai](location)
+    - [American](cuisine)
+    - I'm hungry. Looking out for some good [chinese](cuisine) restaurants in [chandigarh](location)
 - intent: send_email
   examples: |
     - [xyz@yahoo.com](email)
@@ -95,6 +105,8 @@ nlu:
     - [kbc@outlook.com](email)
     - [kbc@yahoo.com](email)
     - [kbc@ahoo.com](email)
+    - yes. Please send it to [rasatestingupgrad2021@outlook.com](email)[rasatestingupgrad2021@outlook.com](email)
+    - [rasatestingupgrad2021@outlook.com](email)
 - intent: goodbye
   examples: |
     - thanks bye
@@ -153,6 +165,7 @@ nlu:
     - between 300 to 700
     - 300-700 range
     - 300-700
+    - between 300 and 700
 - synonym: Mumbai
   examples: |
     - mumbai
@@ -183,9 +196,6 @@ nlu:
     - Bengaluru
     - bangalore
     - bglr
-- synonym: 'Medium'
-  examples: |
-    - between 300 and 700
 - synonym: Baroda
   examples: |
     - Vadodara
@@ -209,13 +219,9 @@ nlu:
 - regex: email
   examples: |
     - [A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}
-    - examples: |
 - regex: greet
   examples: |
-    - examples: |
     - hey[^\s]*
 - regex: pincode
   examples: |
     - [0-9]{6}
-    - examples: |
-    - 123456

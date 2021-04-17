@@ -3,12 +3,12 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- affirm
 - restaurant_search
 - greet
 - send_email
-- nlu_fallback
 - deny
+- affirm
+- nlu_fallback
 - help
 - goodbye
 - stop
@@ -38,7 +38,7 @@ slots:
     influence_conversation: true
   email_sent:
     type: text
-    influence_conversation: true  
+    influence_conversation: true
 responses:
   utter_ask_cuisine:
   - buttons:
@@ -84,6 +84,8 @@ responses:
   - text: Sorry, didn’t find any such location. Can you please tell again?
   utter_restaurant_not_found:
   - text: No restaurants found
+  utter_restaurant_found:
+  - text: Restaurants found
   utter_ask_send_email:
   - text: Should I send you details of all the restaurants on email?
   utter_ask_email:
@@ -114,5 +116,6 @@ actions:
 - utter_goodbye
 - utter_greet
 - utter_location_not_found
+- utter_restaurant_found
 - utter_restaurant_not_found
 - utter_service_not_available
